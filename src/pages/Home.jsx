@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from "react-redux";
 import qs from "qs";
 
 import {
+  selectFilter,
   setCategoryFilters,
   setCurrentPage,
   setFilters,
 } from "../redux/slices/filterSlice";
-import { fetchPizzas } from "../redux/slices/pizzasSlice";
-import { SearchContext } from "../App";
+import { fetchPizzas, selectPizzas } from "../redux/slices/pizzasSlice";
 import { sortList } from "../components/Sort";
 import Sort from "../components/Sort";
 import Categories from "../components/Categories";
@@ -23,12 +23,8 @@ const Home = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const { categoryFilters, sort, currentPage } = useSelector(
-    (state) => state.filter
-  );
-  const { status, items } = useSelector((state) => state.pizzas);
-
-  const { searchValue } = React.useContext(SearchContext);
+  const { categoryFilters, sort, currentPage, searchValue } = useSelector(selectFilter);
+  const { status, items } = useSelector(selectPizzas);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryFilters(id));
