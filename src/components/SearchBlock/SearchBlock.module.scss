@@ -1,0 +1,24 @@
+.root {
+  position: relative;
+  border: 1px solid rgba($color: #000000, $alpha: 0.1);
+  padding: 12px 20px;
+  width: 200px;
+  border-radius: 15px;
+  font-size: 16px;
+}
+.input{
+  width: 100%;
+  border: none;
+}
+.clearIcon{
+  position: absolute;
+  right: 5px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  top: 15px;
+  opacity: 0.3;
+  &:hover{
+    opacity: 0.8;
+  }
+}
