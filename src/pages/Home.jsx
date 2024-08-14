@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import qs from "qs";
 
@@ -23,7 +23,8 @@ const Home = () => {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const { categoryFilters, sort, currentPage, searchValue } = useSelector(selectFilter);
+  const { categoryFilters, sort, currentPage, searchValue } =
+    useSelector(selectFilter);
   const { status, items } = useSelector(selectPizzas);
 
   const onChangeCategory = (id) => {
@@ -94,7 +95,11 @@ const Home = () => {
   }, [categoryFilters, sort.sortProperty, currentPage]);
 
   const skeletons = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
-  const pizzas = items.map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+  const pizzas = items.map((obj) => (
+    <Link key={obj.id} to={`/pizza/${obj.id}`}>
+      <PizzaBlock {...obj} />
+    </Link>
+  ));
 
   return (
     <div className='container'>

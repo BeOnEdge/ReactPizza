@@ -1,0 +1,14 @@
+.full-pizza {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  &__text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  &__title {
+    margin-bottom: 5px;
+  }
+}
