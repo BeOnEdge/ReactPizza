@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectFilterSort, setSort } from "../redux/slices/filterSlice";
+import { selectFilterSort, setSort, SortItem } from "../redux/slices/filterSlice";
 
-type SortItem = { name: string; sortProperty: string };
+
 
 export const sortList: SortItem[] = [
   { name: "популярности>", sortProperty: "rating" },
@@ -25,8 +25,8 @@ function Sort() {
   };
 
   React.useEffect(() => {
-    const clickOutside = (e: any) => {
-      if (!e.composedPath().includes(sortRef.current)) {
+    const clickOutside = (e: MouseEvent) => {
+      if (sortRef.current && !e.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }
     };
@@ -59,7 +59,9 @@ function Sort() {
               <li
                 key={i}
                 onClick={() => onClickListItem(obj)}
-                className={sort.sortProperty === obj.sortProperty ? "active" : ""}
+                className={
+                  sort.sortProperty === obj.sortProperty ? "active" : ""
+                }
               >
                 {obj.name}
               </li>
