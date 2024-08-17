@@ -15,7 +15,7 @@ export const sortList: SortItem[] = [
   { name: "алфавиту>", sortProperty: "title" },
   { name: "алфавиту<", sortProperty: "-title" },
 ];
-const Sort: React.FC<SortProps> = React.memo(({ value }) => {
+export const Sort: React.FC<SortProps> = React.memo(({ value }) => {
   const dispatch = useDispatch();
   // const sort = useSelector(selectFilterSort);
   const sortRef = React.useRef<HTMLDivElement>(null);
@@ -75,5 +75,3 @@ const Sort: React.FC<SortProps> = React.memo(({ value }) => {
     </div>
   );
 });
-
-export default Sort;

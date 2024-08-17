@@ -4,11 +4,9 @@ import { useSelector } from "react-redux";
 import qs from "qs";
 
 import { sortList } from "../components/Sort";
-import Sort from "../components/Sort";
-import Categories from "../components/Categories";
-import PizzaBlock from "../components/PizzaBlock";
-import Skeleton from "../components/PizzaBlock/Skeleton";
-import Pagination from "../components/Pagination";
+
+
+import {Sort, Categories, PizzaBlock, Skeleton, Pagination} from "../components";
 import { useAppDispatch } from "../redux/store";
 import { selectFilter } from "../redux/filter/selectors";
 import {

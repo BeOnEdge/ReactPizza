@@ -4,7 +4,7 @@ import styles from "./SearchBlock.module.scss";
 import { useDispatch } from "react-redux";
 import { setSearchValue } from "../../redux/filter/slice";
 
-const SearchBlock: React.FC = () => {
+export const SearchBlock: React.FC = () => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState("");
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -55,5 +55,3 @@ const SearchBlock: React.FC = () => {
     </div>
   );
 };
-
-export default SearchBlock;
