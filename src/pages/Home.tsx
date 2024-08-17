@@ -3,13 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import qs from "qs";
 
-import {
-  selectFilter,
-  setCategoryFilters,
-  setCurrentPage,
-  setFilters,
-} from "../redux/slices/filterSlice";
-import { fetchPizzas, selectPizzas } from "../redux/slices/pizzasSlice";
 import { sortList } from "../components/Sort";
 import Sort from "../components/Sort";
 import Categories from "../components/Categories";
@@ -17,6 +10,14 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
 import { useAppDispatch } from "../redux/store";
+import { selectFilter } from "../redux/filter/selectors";
+import {
+  setCategoryFilters,
+  setCurrentPage,
+  setFilters,
+} from "../redux/filter/slice";
+import { selectPizzas } from "../redux/pizzas/selectors";
+import { fetchPizzas } from "../redux/pizzas/asyncActions";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -28,9 +29,9 @@ const Home: React.FC = () => {
     useSelector(selectFilter);
   const { status, items } = useSelector(selectPizzas);
 
-  const onChangeCategory = (id: number) => {
+  const onChangeCategory = React.useCallback((id: number) => {
     dispatch(setCategoryFilters(id));
-  };
+  }, []);
 
   const onChangePage = (page: number) => {
     dispatch(setCurrentPage(page));
@@ -74,7 +75,7 @@ const Home: React.FC = () => {
         sortList[0];
       dispatch(
         setFilters({
-          searchValue: String(params.searchValue) ||'',
+          searchValue: String(params.searchValue) || "",
           categoryFilters: Number(params.categoryFilters) || 0,
           currentPage: Number(params.currentPage) || 1,
           sort,
@@ -98,9 +99,7 @@ const Home: React.FC = () => {
   }, [categoryFilters, sort.sortProperty, currentPage]);
 
   const skeletons = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
-  const pizzas = items.map((obj: any) => (
-      <PizzaBlock {...obj} />
-  ));
+  const pizzas = items.map((obj: any) => <PizzaBlock key={obj.id} {...obj} />);
 
   return (
     <div className='container'>
@@ -109,7 +108,7 @@ const Home: React.FC = () => {
           value={categoryFilters}
           clickCategories={onChangeCategory}
         />
-        <Sort />
+        <Sort value={sort} />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
 

@@ -23,15 +23,15 @@ body {
 .content {
   padding: 40px 0;
 
-  &__error-info{
+  &__error-info {
     text-align: center;
     margin: 100px auto;
     width: 580px;
-    h2{
-      font-size:32px;
+    h2 {
+      font-size: 32px;
       font-weight: 700;
     }
-    p{
+    p {
       font-size: 20px;
     }
   }
@@ -167,7 +167,7 @@ body {
     }
   }
 
-  .content__items{
+  .content__items {
     display: block;
   }
 
@@ -219,6 +219,19 @@ body {
         svg {
           path:first-of-type {
             display: none;
+          }
+        }
+        &:disabled {
+          cursor:auto;
+          opacity: 0.3;
+          &:active {
+            transform: none;
+          }
+          &:hover {
+            background-color: transparent;
+            svg path {
+              fill: #f24701;
+            }
           }
         }
       }
