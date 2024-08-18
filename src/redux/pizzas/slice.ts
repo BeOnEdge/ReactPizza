@@ -16,18 +16,19 @@ const pizzasSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchPizzas.pending, (state) => {
-      state.status = Status.LOADING;
-      state.items = [];
-    });
-    builder.addCase(fetchPizzas.fulfilled, (state, action) => {
-      state.items = action.payload;
-      state.status = Status.SUCCES;
-    });
-    builder.addCase(fetchPizzas.rejected, (state) => {
-      state.status = Status.ERROR;
-      state.items = [];
-    });
+    builder
+      .addCase(fetchPizzas.pending, (state) => {
+        state.status = Status.LOADING;
+        state.items = [];
+      })
+      .addCase(fetchPizzas.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.status = Status.SUCCES;
+      })
+      .addCase(fetchPizzas.rejected, (state) => {
+        state.status = Status.ERROR;
+        state.items = [];
+      });
   },
 });
 

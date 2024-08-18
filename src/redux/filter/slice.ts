@@ -17,6 +17,7 @@ const filterSlice = createSlice({
   reducers: {
     setCategoryFilters(state, action: PayloadAction<number>) {
       state.categoryFilters = action.payload;
+      state.currentPage = 1;
     },
     setSearchValue(state, action: PayloadAction<string>) {
       state.searchValue = action.payload;
